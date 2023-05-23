@@ -16,7 +16,9 @@ const App: React.FC = () => {
     <div
       className="flex items-center justify-center h-screen"
     >
-      <button onClick={openModal}>Open Modal</button>
+      <button
+        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+        onClick={openModal}>Open Modal</button>
       <CSSTransition
         in={isOpen}
         timeout={300}
