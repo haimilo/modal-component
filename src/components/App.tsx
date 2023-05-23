@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Modal from './Modal';
+import { CSSTransition } from 'react-transition-group';
 
 const App: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,12 +13,26 @@ const App: React.FC = () => {
     setIsOpen(false);
   }
   return (
-    <div>
+    <div
+      className="flex items-center justify-center h-screen"
+    >
       <button onClick={openModal}>Open Modal</button>
-      <Modal isOpen={isOpen} onClose={closeModal}>
-        <h2>Modal Content</h2>
-        <p>This is the content of the modal.</p>
-      </Modal>
+      <CSSTransition
+        in={isOpen}
+        timeout={300}
+        classNames={{
+          enter: 'modal-enter',
+          enterActive: 'modal-enter-active',
+          exit: 'modal-exit',
+          exitActive: 'modal-exit-active',
+        }}
+        unmountOnExit
+      >
+        <Modal isOpen={isOpen} onClose={closeModal}>
+          <h2>Modal Content</h2>
+          <p>This is the content of the modal.</p>
+        </Modal>
+      </CSSTransition>
     </div>
   )
 }
